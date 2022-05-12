@@ -50,7 +50,7 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with general configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://evance:1234@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:1234@localhost/pitches'
     
     DEBUG=True
     

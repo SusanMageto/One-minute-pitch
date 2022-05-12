@@ -1,53 +1,101 @@
-{% macro display(category_list) %}
-<div class="row">
-	{% if category_list %}
-	{% for category in category_list %}
-	<div class="col-md-6">
-		<div class="thumbnail text-center">
-			<h2 class="card-header ">{{category.title}}</h2>
-			<div class="card-body">
-				<blockquote class="blockquote mb-0">
-					<h4>{{category.description}}</h4>
-					<footer> Posted by {{category.user.username}}</footer>
-				</blockquote>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <div class="container-fluid">
+    <a class="navbar-brand" href="{{url_for('main.home')}}">Pitches</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url_for('main.home')}}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{url_for('main.music')}}">Music</a></li>
+            <li><a class="dropdown-item" href="{{url_for('main.movies')}}">Movies</a></li>
+            <li><a class="dropdown-item" href="{{url_for('main.art')}}">Arts</a></li>
+            <li><a class="dropdown-item" href="{{url_for('main.general')}}">General</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> -->
 
-				<a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-primary" style="font-family:'Roboto Condensed', sans-serif;"> Comment</a>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Lemonada&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<div class="navbar  bg-info" style="background-color:#24cec6;" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand text-black" href="/" id="logo">Pitchez</a>
+    </div>
 
-				<a href="{{url_for('main.upvote',pitch_id = category.id)}}" class="btn btn-success btn-sm" style="font-family:'Roboto Condensed', sans-serif;"> Upvote
-					<span>{{category.upvotes.count()}}</span>
-				</a>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
 
-				<a href="{{url_for('main.downvote',pitch_id = category.id)}}" class="btn btn-danger btn-sm" style="font-family:'Roboto Condensed', sans-serif;"> Downvote
-					<span>{{category.downvotes.count()}}</span></a>
+        <li>{{current_user.username}}</li>
+        {% if current_user.is_authenticated %}
+        <li><a href="{{url_for('auth.logout')}}">Sign Out</a></li>
+        {% endif %}
 
+        <li><a href="{{url_for('auth.login')}}">Sign In</a></li>
 
-			</div>
-		</div>
-
-	</div>
-	{% endfor %}
-	{% else %}
-	{% endif %}
+      </ul>
+    </div>
+  </div>
 </div>
-{% endmacro %}
+<div class="overlay">
+  <div class="bgimage">
+    <p class="lead" style="font-family: 'Lemonada', cursive; font-size: 30px;">Come as you are and Leave an IMPRESSION!
+    </p>
+    <div class="p-3 p-md-5 m-md-3 text-center bg-transparent">
+      <div class="col-md-12 p-lg-5 mx-auto my-5">
+        <div class="display-4">
+          <h1 class="weight" style="font-family: 'Times New Roman', Times, serif; font-size: 40px;">"May your brightness
+            preced your presence"</h1>
+          <hr class="hr">
 
-{% macro displayComment(comments) %}
-<ul>
+          <div id="butt">
+            <a class="btn" href="/pitches/new/">Create new Pitch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .display-4 {
+    margin-top: 80px;
+    margin-bottom: 50px;
+  }
 
-	{% if comments %}
-	{% for comment in comments %}
-	<div class="row text-center">
-		<a>
-			<p style="color: brown">{{ comment.description }}</p>
-		</a>
-		<small> posted by {{comment.user.username}}</small>
-	</div>
-	{% endfor %}
-	{% else %}
+  .btn:hover {
+    background-color: #d0e9ee;
+    border: 0px;
+    box-shadow: 2px 2px 10px;
+  }
 
-	<h3>No Comments Yet!</h3>
-	{%endif%}
-
-</ul>
-
-{% endmacro %}
+  .btn {
+    font-size: x-large;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    border: 2px solid black;
+    background-color: #d0e9ee;
+    border: 0px;
+    box-shadow: 2px 2px 10px;
+    margin-right: 320px;
+    margin-left: 320px;
+    padding: 10px;
+  }
+</style>

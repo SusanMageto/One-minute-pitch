@@ -68,7 +68,7 @@ class TestConfig(Config):
 
 
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:password@localhost/pitchweb'
-
+    pass
 
 config_options = {
     'development': DevConfig,

@@ -9,6 +9,63 @@ from .. import db
 
 
 
+# @main.route('/', methods = ['GET','POST'])
+# def home():
+
+#     '''
+#     Root page functions that return the home page and its data
+#     '''
+#     pitch = Pitch.query.all()
+#     title = 'Home'
+#     upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
+#     return render_template('index.html', title = title, pitch = pitch)
+    
+
+
+# @main.route('/music', methods = ['GET','POST'])
+# def music():
+
+#     '''
+#     this method filters music pitches
+#     '''
+    
+#     title = 'Music'
+#     music = Pitch.query.filter_by(category="music")
+#     return render_template('music.html', title = title,music=music)
+
+# @main.route('/art', methods = ['GET','POST'])
+# def art():
+
+#     '''
+#     this method filters music pitches
+#     '''
+    
+#     title = 'Art'
+#     art = Pitch.query.filter_by(category ="art")
+#     return render_template('art.html', title = title,art=art)
+
+# @main.route('/movies', methods = ['GET','POST'])
+# def movies():
+
+#     '''
+#     this method filters music pitches
+#     '''
+    
+#     title = 'movies'
+#     movies = Pitch.query.filter_by(category ="movies")
+#     return render_template('movies.html', title = title,movies=movies)
+
+# @main.route('/general', methods = ['GET','POST'])
+# def general():
+
+#     '''
+#     this method filters music pitches
+#     '''
+    
+#     title = 'general'
+#     general = Pitch.query.filter_by(category ="general")
+#     return render_template('movies.html', title = title,general=general)
+
 @main.route('/', methods = ['GET','POST'])
 def index():
 
@@ -26,8 +83,7 @@ def index():
     
 
     return render_template('home.html', title = title, pitch = pitch, movies=movies, music=music, art=art, general=general, upvotes=upvotes)
-    
-
+  
 @main.route('/pitches/new/', methods = ['GET','POST'])
 @login_required
 def new_pitch():

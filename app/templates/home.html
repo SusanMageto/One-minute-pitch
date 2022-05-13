@@ -1,27 +1,3 @@
-<!-- {%extends 'base.html'%}
-{%block content%}
-<div class="container">
-  <div class="row">
-    {%for i in pitch%}
-    <div class="col-4">
-      <div class="card">
-        <div class="card-header">
-          {{i.title}}
-        </div>
-        <div class="card-body">
-          <p>{{i.description}}</p>
-        </div>
-        <card-footer>
-          <p class="text-mute">{{i.category}}</p>
-        </card-footer>
-      </div>
-    </div>
-    {%else%}
-    <h1 class="text-warning mt-5 text-center">There are no available pitches at the time</h1>
-    {%endfor%}
-  </div>
-</div>
-  {%endblock%} -->
 
   {% extends 'bootstrap/base.html' %}
   {% import 'macros.html' as macro %}
